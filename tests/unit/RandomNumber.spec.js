@@ -29,14 +29,13 @@ describe('RandomNumber', () => {
         },
       })
 
-      expect(screen.getByTestId('random-number').innerHTML).toContain(0)
+      const randomNumber = screen.getByTestId('random-number')
+      expect(randomNumber.innerHTML).toContain(0)
+
       await user.click(screen.getByTestId('generate-random-number'))
+      await waitFor(() => randomNumber)
 
-      await waitFor(() => screen.getByTestId('random-number'))
-
-      expect(screen.getByTestId('random-number').innerHTML).toContain(
-        expectedResult
-      )
+      expect(randomNumber.innerHTML).toContain(expectedResult)
     }
   )
 })
